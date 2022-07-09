@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.jumbotron {
+    text-align: center;
+    justify-items: center;
+    height: 255px;
+    padding-top: 4%;
+}
+
+#currentWeather {
+    padding: 1%;
+    margin-bottom: 2%;
+}
+
+header {
+    height: 25%;
+    border: 1px solid;
+    margin-bottom: 3%;
+    background: rgb(0,240,205);
+    background: linear-gradient(0deg, rgba(0,240,205,1) 0%, rgba(170,170,160,1) 100%);
+}
