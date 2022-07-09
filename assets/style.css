@@ -24,3 +24,16 @@ header {
     background: rgb(0,240,205);
     background: linear-gradient(0deg, rgba(0,240,205,1) 0%, rgba(170,170,160,1) 100%);
 }
+
+.favorable {
+    background-color: green;
+    color: white;
+}
+.moderate {
+    background-color: yellow;
+    color: black;
+}
+.severe {
+    background-color: red;
+    color: blue
+}

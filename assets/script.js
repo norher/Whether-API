@@ -65,6 +65,13 @@ function getWeather() {
             windEl.innerText = `Wind is ${data.current.wind_speed} MPH`;
             humidityEl.innerText = `Humidity is ${data.current.humidity}%`;
             uvEl.innerText = `UV Index is: ${data.current.uvi}`;
+            if (data.current.uvi <= 2) {
+                uvEl.setAttribute('class', 'favorable')
+            } else if (data.current.uvi > 2 && data.current.uvi <= 5) {
+                uvEl.setAttribute('class', 'moderate')
+            } else if (data.current.current.uvi >5) {
+                uvEl.setAttribute('class', 'severe')
+            }
             $('#cardHolder').empty();
             for (var i = 1; i < 6; i++) {
                 var card = document.createElement('div');
