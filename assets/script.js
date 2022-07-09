@@ -33,7 +33,7 @@ function init() {
         
 // Passes city to apicall to get lat and lon, saves them in localStorage
 function getCoordinates() {
-    var coordinateRoot = 'http://api.openweathermap.org/geo/1.0/direct?q='
+    var coordinateRoot = 'https://api.openweathermap.org/geo/1.0/direct?q='
     var city = localStorage.getItem('city');
     fetch(coordinateRoot + city + '&appid=' + apiKey)
         .then(function (response) {
