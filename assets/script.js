@@ -12,16 +12,18 @@ const apiKey = 'ebfa1cc409bdad3120631b857ca0e364';
 var cityList = [];
 const todayDate = moment().format("dddd, MMM Do YYYY");
 
+//Initializes application
 init();
 
-
+// Checks localStorage, makes buttons for cities in localStorage
 function init() {
     var storedCities = localStorage.getItem('history');
     if (storedCities) {
         var cityList = JSON.parse(storedCities);
         for (var i = 0; i < cityList.length; i++) {
             var newBtn = document.createElement('button');
-            newBtn.setAttribute('class', 'btn btn-outline-dark');
+            newBtn.setAttribute('class', 'btn btn-outline-dark newBtn');
+            newBtn.setAttribute('value', cityList[i]);
             newBtn.textContent = cityList[i];
             searchHistory.appendChild(newBtn);
         }
@@ -29,6 +31,7 @@ function init() {
     };
 };
         
+// Passes city to apicall to get lat and lon, saves them in localStorage
 function getCoordinates() {
     var coordinateRoot = 'http://api.openweathermap.org/geo/1.0/direct?q='
     var city = localStorage.getItem('city');
@@ -44,7 +47,8 @@ function getCoordinates() {
     };
     
 
-
+// retrives localStorage for lat and lon and passes it the API key. populates current weather element, 
+//Makes cards for the forecast and populates it to the DOM
 function getWeather() {
     const lat = localStorage.getItem('lat');
     const lon = localStorage.getItem('lon');
@@ -67,7 +71,7 @@ function getWeather() {
                 uvEl.setAttribute('class', 'favorable')
             } else if (data.current.uvi > 2 && data.current.uvi <= 5) {
                 uvEl.setAttribute('class', 'moderate')
-            } else if (data.current.current.uvi >5) {
+            } else if (data.current.uvi > 6) {
                 uvEl.setAttribute('class', 'severe')
             }
             $('#cardHolder').empty();
@@ -97,7 +101,8 @@ function getWeather() {
             };
         });
     };
-    
+
+// Searches for the city passed in our input element and adds a button to history
 $('#searchBtn').click( function(event) {
     event.preventDefault();
     var searchedCity = cityEl.value;
@@ -108,13 +113,17 @@ $('#searchBtn').click( function(event) {
     $('#cityInput').empty();
     var newBtn = document.createElement('button');
     newBtn.textContent = searchedCity;
-    newBtn.setAttribute('class', 'btn btn-outline-dark');
+    newBtn.setAttribute('class', 'btn btn-outline-dark newBtn');
     newBtn.setAttribute('id', 'generatedBtn');
     newBtn.setAttribute('value', searchedCity);
     searchHistory.appendChild(newBtn);
 });
 
+$('.newBtn').click( function() {
+console.log(this.value);
+})
 
+//Stringifies city in localStorage
 function storeCity(pastCity) {
     cityList.splice(0, 0, pastCity);
     localStorage.setItem('history', JSON.stringify(cityList));
