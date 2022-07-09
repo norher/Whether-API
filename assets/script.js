@@ -19,7 +19,6 @@ function init() {
     var storedCities = localStorage.getItem('history');
     if (storedCities) {
         var cityList = JSON.parse(storedCities);
-        // console.log(cityList);
         for (var i = 0; i < cityList.length; i++) {
             var newBtn = document.createElement('button');
             newBtn.setAttribute('class', 'btn btn-outline-dark');
@@ -35,7 +34,6 @@ function getCoordinates() {
     var city = localStorage.getItem('city');
     fetch(coordinateRoot + city + '&appid=' + apiKey)
         .then(function (response) {
-            // console.log(response);
             return response.json();
         })
         .then(function(data) {
@@ -96,7 +94,6 @@ function getWeather() {
                 contents.append(templi, windli, humidityli);
                 card.append(cardTitle, icon, contents);
                 cardHolderEl.appendChild(card);
-            // checkUVI.CSS
             };
         });
     };
